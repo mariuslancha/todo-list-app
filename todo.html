@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <input id="todo-title" type="text" />
+    <input id="date-picker" type="date" />
+    <button onclick="addTodo()">Press Me</button>
+    <div id="todo-list"></div>
+    <script>
+      let todos = [
+        {
+          title: "get groceries",
+          dueDate: "2024-10-04",
+          id: 'id1'
+        },
+        {
+          title: "wash car",
+          dueDate: "2024-09-06",
+          id: 'id2'
+        },
+        {
+          title: "Make dinner",
+          dueDate: "2024-07-11",
+          id: 'id3'
+        },
+      ];
+
+      render();
+      //add new element in the textbox when we click the button
+      function addTodo() {
+        const textbox = document.getElementById("todo-title");
+        const title = textbox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dueDate = datePicker.value;
+
+        const id = new Date().getTime();
+        todos.push({
+            title: title,
+            dueDate: dueDate,
+            id: id
+        });
+//renders the object above
+        render();
+      }
+
+      function deleteTodo(event) {
+        const deleteButton = event.target;
+        const idToDelete = deleteButton.id;
+
+        todos = todos.filter(function (todo) {
+            // If the id of this todo matches idToDelete, eturn false
+            // Fro everything else, return true
+            if (todo.id === idToDelete) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+//to update the page
+        render();
+      }
+
+      function render() {
+        //reset our list
+        document.getElementById("todo-list").innerHTML = "";
+
+        //This now will re-render the updated list
+        todos.forEach(function (todo) {
+          const element = document.createElement("div");
+          element.innerText = todo.title + '' + todo.dueDate;
+
+          const todoList = document.getElementById("todo-list");
+          todoList.appendChild(element);
+//create delete button
+          const deleteButton = document.createElement('button');
+          deleteButton.innerText = 'Delete';
+          deleteButton.style = 'margin-left: 12px;';
+          deleteButton.onclick = deleteTodo;
+          element.appendChild(deleteButton)
+        });
+      }
+    </script>
+  </body>
+</html>
