@@ -48,3 +48,14 @@ input[type='text']:focus{
     color: #ffff;
     cursor: pointer;
 }
+
+.add-btn:hover{
+    background-color: darkgreen;
+    transition: 0.5s;
+}
+
+.add-btn:active{
+    transform: scale(0.9);
+    background-color: darkolivegreen;
+    transition: 0.7s ease;
+}
