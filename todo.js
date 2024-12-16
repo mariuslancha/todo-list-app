@@ -57,7 +57,7 @@ function removeTodo(idToDelete){
 function saveTodos(){
     localStorage.setItem('todos', JSON.stringify(todos));     
     }
-    
+
 
 // controller
 function addTodo(){
@@ -93,7 +93,7 @@ function render() {
 
         const deleteButton = document.createElement('Button');
         deleteButton.innerText = 'Delete';
-        deleteButton.style = 'margin-left: 12px; margin-top: 12px;';
+        deleteButton.style = 'margin-left: 20px; margin-top: 20px; background-color: darkred; padding: 10px 20px; border: none; color: #ffff;';
         deleteButton.onclick = deleteTodo;
         deleteButton.id = todo.id;
         element.appendChild(deleteButton);
